@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/knight.png" id="1"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/coin.tscn" id="4"]
+
+[sub_resource type="CircleShape2D" id="5"]
+radius = 80.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("3")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.941176, 0.901961, 0.823529, 1)
+
+[node name="Player" type="Area2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("2")
+wrap_instead_of_clamp = true
+follow_mouse = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("1")
+scale = Vector2(0.35, 0.35)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("5")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 12.0
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
+
+[node name="Coin1" parent="." instance=ExtResource("4")]
+position = Vector2(200, 180)
+
+[node name="Coin2" parent="." instance=ExtResource("4")]
+position = Vector2(950, 140)
+
+[node name="Coin3" parent="." instance=ExtResource("4")]
+position = Vector2(320, 480)
+
+[node name="Coin4" parent="." instance=ExtResource("4")]
+position = Vector2(800, 420)
+
+[node name="Coin5" parent="." instance=ExtResource("4")]
+position = Vector2(580, 260)
